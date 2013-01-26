@@ -18,11 +18,8 @@ int bind(int s, const struct sockaddr *sa, socklen_t len)
 	
 	switch (sa->sa_family) {
 		case AF_INET:
-			if ((setsockopt(s, SOL_IP, IP_TRANSPARENT, &one, sizeof(one)) == -1)
-			    && (setsockopt(s, SOL_IP, IP_FREEBIND, &one, sizeof(one)) == -1)) {
-				success = 0;
-			}
-			else {
+			if ((setsockopt(s, SOL_IP, IP_TRANSPARENT, &one, sizeof(one)) == 0)
+			    || (setsockopt(s, SOL_IP, IP_FREEBIND, &one, sizeof(one)) == 0)) {
 				success = 1;
 			}
 			fprintf(stderr, "Enabling transparent bind on %s:%d : %s\n",
@@ -32,10 +29,7 @@ int bind(int s, const struct sockaddr *sa, socklen_t len)
       			);
 		break;
 		case AF_INET6:
-			if (setsockopt(s, SOL_IPV6, IPV6_TRANSPARENT, &one, sizeof(one)) == -1) {
-				success = 0;
-			}
-			else {
+			if (setsockopt(s, SOL_IPV6, IPV6_TRANSPARENT, &one, sizeof(one)) == 0) {
 				success = 1;
 			}
 			fprintf(stderr, "Enabling transparent bind on [%s]:%d : %s\n",
