@@ -38,7 +38,7 @@ int bind(int s, const struct sockaddr *sa, socklen_t len)
 			else {
 				success = 1;
 			}
-			fprintf(stderr, "Enabling transparent bind on %s:%d : %s\n",
+			fprintf(stderr, "Enabling transparent bind on [%s]:%d : %s\n",
 				inet_ntop(AF_INET6, &((struct sockaddr_in6*)sa)->sin6_addr, straddr, sizeof(straddr)),
 				ntohs(((struct sockaddr_in6*)sa)->sin6_port),
 				success ? "success" : "failed"
