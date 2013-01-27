@@ -3,14 +3,18 @@ transbind
 
 Enable transparent binding on applications that don't allow it natively.
 
-This library is still **experimental**. It is based on LD_PRELOAD to set socket options before any bind() calls.
+This library is still **experimental**. It is based on `LD_PRELOAD` to set socket options before any bind() calls.
 
-* For IPv4 : *IP_TRANSPARENT* or *IP_FREEBIND*
-* For IPv6 : *IPV6_TRANSPARENT*
+* For IPv4 : `IP_TRANSPARENT` or `IP_FREEBIND`
+* For IPv6 : `IPV6_TRANSPARENT`
 
 ## How To
 
     LD_PRELOAD=<installation path>/transbind.so <server application>
+
+The environment variable `TRANSBIND_VERBOSITY` allows to enable/disable debug messages.
+A value greater than 0 will enable debug messages.
+The default is to not log anything.
 
 ## Tested applications (IPv4 only)
 * nginx 
