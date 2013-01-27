@@ -5,6 +5,9 @@ Enable transparent binding on applications that don't allow it natively.
 
 This library is still **experimental**. It is based on LD_PRELOAD to set socket options before any bind() calls.
 
+* For IPv4 : *IP_TRANSPARENT* or *IP_FREEBIND*
+* For IPv6 : *IPV6_TRANSPARENT*
+
 ## How To
 
     LD_PRELOAD=<installation path>/transbind.so <server application>
