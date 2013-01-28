@@ -21,9 +21,10 @@
 
 int bind(int s, const struct sockaddr *sa, socklen_t len)
 {
+	static const unsigned one = 1;
+
 	char *verbosity_env;
 	int verbosity;
-	unsigned one = 1;
 	int success = 0;
 	char straddr[INET6_ADDRSTRLEN];
 
