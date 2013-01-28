@@ -19,17 +19,14 @@
 #define IPV6_TRANSPARENT 75
 #endif
 
+static int verbosity = 0;
+
 int bind(int s, const struct sockaddr *sa, socklen_t len)
 {
 	static const unsigned one = 1;
 
-	char *verbosity_env;
-	int verbosity;
 	int success = 0;
 	char straddr[INET6_ADDRSTRLEN];
-
-	verbosity_env = getenv("TRANSBIND_VERBOSITY");
-	verbosity = verbosity_env ? atoi(verbosity_env) : 0;
 
 	switch (sa->sa_family) {
 		case AF_INET:
@@ -60,3 +57,11 @@ int bind(int s, const struct sockaddr *sa, socklen_t len)
 	}
 	return syscall(SYS_bind, s, sa, len);
 }
+
+__attribute__((constructor)) static void init() {
+	char *verbosity_env;
+
+	verbosity_env = getenv("TRANSBIND_VERBOSITY");
+	verbosity = verbosity_env ? atoi(verbosity_env) : 0;
+}
+
