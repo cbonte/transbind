@@ -7,6 +7,14 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
+#ifndef IP_FREEBIND
+#define IP_FREEBIND 15
+#endif
+
+#ifndef IP_TRANSPARENT
+#define IP_TRANSPARENT 19
+#endif
+
 #ifndef IPV6_TRANSPARENT
 #define IPV6_TRANSPARENT 75
 #endif
